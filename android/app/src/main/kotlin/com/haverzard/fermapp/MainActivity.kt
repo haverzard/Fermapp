@@ -1,4 +1,4 @@
-package com.example.Fermapp
+package com.haverzard.fermapp
 
 import io.flutter.embedding.android.FlutterActivity
 

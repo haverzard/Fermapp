@@ -1,6 +1,6 @@
-# Fermapp
+# fermapp
 
-A new Flutter project.
+Time management application
 
 ## Getting Started
 
