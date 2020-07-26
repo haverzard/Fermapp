@@ -86,6 +86,38 @@ class _HomeState extends State<Home> {
                   ],
               ),
             ),
+            Container(
+              height: 300,
+              child: ListView(
+                scrollDirection: Axis.vertical,
+                children: <Widget>[
+                  Container(
+                    height: 75,
+                    child: Row(
+                      children: <Widget>[
+                        SizedBox(width: 100),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              "APP NAME",
+                              style: TextStyle(
+                                fontSize: 20,
+                              ),
+                            ),
+                            Text("remaining time: 30s")
+                          ],
+                        )
+                      ],
+                    )
+                  ),
+                  Container(
+                      height: 50,
+                      child: Text("Test")
+                  )
+                ],
+              ),
+            ),
           ]
         )
       )
