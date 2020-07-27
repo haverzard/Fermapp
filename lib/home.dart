@@ -178,8 +178,36 @@ class _HomeState extends State<Home> {
                 }
               ),
             ),
+//            Container(
+//              width: 50,
+//              height: 50,
+//              decoration: BoxDecoration(
+//                  shape: BoxShape.circle,
+//                  image: DecorationImage(
+//                      fit: BoxFit.fill,
+//                      image: AssetImage("assets/Lulu.PNG")
+//                  )
+//              )
+//            )
           ]
         )
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            title: Text('Home'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.business),
+            title: Text('App'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.school),
+            title: Text('Settings'),
+          ),
+        ],
+        selectedItemColor: Colors.amber[800],
       )
     );
   }
