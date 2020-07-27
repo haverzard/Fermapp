@@ -178,17 +178,6 @@ class _HomeState extends State<Home> {
                 }
               ),
             ),
-//            Container(
-//              width: 50,
-//              height: 50,
-//              decoration: BoxDecoration(
-//                  shape: BoxShape.circle,
-//                  image: DecorationImage(
-//                      fit: BoxFit.fill,
-//                      image: AssetImage("assets/Lulu.PNG")
-//                  )
-//              )
-//            )
           ]
         )
       ),
