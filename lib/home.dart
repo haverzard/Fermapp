@@ -9,29 +9,29 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   List<Map> appsList = [
     {
-      "appName": "APP NAME",
-      "logoPath": "assets/Lulu.PNG",
-      "remainingTime": "30s",
+      'appName': 'APP NAME',
+      'logoPath': 'assets/Lulu.PNG',
+      'remainingTime': '30s',
     },
     {
-      "appName": "APP NAME",
-      "logoPath": "assets/Lulu.PNG",
-      "remainingTime": "30s",
+      'appName': 'APP NAME',
+      'logoPath': 'assets/Lulu.PNG',
+      'remainingTime': '30s',
     },
     {
-      "appName": "APP NAME",
-      "logoPath": "assets/Lulu.PNG",
-      "remainingTime": "30s",
+      'appName': 'APP NAME',
+      'logoPath': 'assets/Lulu.PNG',
+      'remainingTime': '30s',
     },
     {
-      "appName": "APP NAME",
-      "logoPath": "assets/Lulu.PNG",
-      "remainingTime": "30s",
+      'appName': 'APP NAME',
+      'logoPath': 'assets/Lulu.PNG',
+      'remainingTime': '30s',
     },
     {
-      "appName": "APP NAME",
-      "logoPath": "assets/Lulu.PNG",
-      "remainingTime": "30s",
+      'appName': 'APP NAME',
+      'logoPath': 'assets/Lulu.PNG',
+      'remainingTime': '30s',
     }
   ];
 
@@ -41,7 +41,7 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Fermapp",
+          'Fermapp',
           style: TextStyle(
             color: Colors.blueGrey
           )
@@ -66,7 +66,7 @@ class _HomeState extends State<Home> {
                           Container(
                             padding: EdgeInsets.fromLTRB(10, 0, 0, 10),
                             child: Text(
-                              "Incoming Deadline",
+                              'Incoming Deadline',
                               style: TextStyle(
                                   fontSize: 24.0
                               ),
@@ -91,7 +91,7 @@ class _HomeState extends State<Home> {
                                         borderRadius: BorderRadius.all(Radius.circular(20)),
                                         image: DecorationImage(
                                           fit: BoxFit.fill,
-                                          image: AssetImage("assets/Lulu.PNG")
+                                          image: AssetImage('assets/Lulu.PNG')
                                       )
                                     ),
                                   )
@@ -102,33 +102,33 @@ class _HomeState extends State<Home> {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: <Widget>[
                                       Text(
-                                        "APP NAME",
+                                        'APP NAME',
                                         style: TextStyle(
                                           fontSize: 19,
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
                                       Text(
-                                        "usage time",
+                                        'usage time',
                                         style: TextStyle(
                                           fontSize: 15,
                                         ),
                                       ),
                                       Text(
-                                        "2:00:30",
+                                        '2:00:30',
                                         style: TextStyle(
                                           fontSize: 17,
                                           fontWeight: FontWeight.bold,
                                         ),
                                       ),
                                       Text(
-                                        "remaining time",
+                                        'remaining time',
                                         style: TextStyle(
                                           fontSize: 15,
                                         ),
                                       ),
                                       Text(
-                                        "2:00:30",
+                                        '2:00:30',
                                         style: TextStyle(
                                           fontSize: 17,
                                           fontWeight: FontWeight.bold,
@@ -166,7 +166,7 @@ class _HomeState extends State<Home> {
                                     shape: BoxShape.circle,
                                     image: DecorationImage(
                                         fit: BoxFit.fill,
-                                        image: AssetImage("${appsList[index]["logoPath"]}")
+                                        image: AssetImage('${appsList[index]['logoPath']}')
                                     )
                                 )
                             ),
@@ -176,12 +176,12 @@ class _HomeState extends State<Home> {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: <Widget>[
                               Text(
-                                "${appsList[index]["appName"]}",
+                                '${appsList[index]['appName']}',
                                 style: TextStyle(
                                   fontSize: 20,
                                 ),
                               ),
-                              Text("remaining time: ${appsList[index]["remainingTime"]}")
+                              Text('remaining time: ${appsList[index]['remainingTime']}')
                             ],
                           ),
                           Container(
@@ -191,7 +191,7 @@ class _HomeState extends State<Home> {
                                 onPressed: () {},
                                 color: Color.fromRGBO(172, 238, 106, 1),
                                 textColor: Colors.black,
-                                child: Text("Edit")
+                                child: Text('Edit')
                             ),
                           ),
                           Container(
@@ -201,7 +201,7 @@ class _HomeState extends State<Home> {
                                 onPressed: () {},
                                 color: Color.fromRGBO(87, 160, 246, 1),
                                 textColor: Colors.black,
-                                child: Text("Info")
+                                child: Text('Info')
                             ),
                           )
                         ],
