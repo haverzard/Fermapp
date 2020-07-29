@@ -10,7 +10,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:fermapp/main.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+  testWidgets('Home UI smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(MyApp());
   });
