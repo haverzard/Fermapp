@@ -37,7 +37,15 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    var screenSize = MediaQuery.of(context).size;
+    final mediaQueryData = MediaQuery.of(context);
+    if (mediaQueryData.orientation == Orientation.landscape) {
+      return const Text("Doesn't support landscape");
+    }
+    return getPortrait(context, mediaQueryData);
+  }
+
+  Widget getPortrait(BuildContext context, MediaQueryData mqd) {
+    var screenSize = mqd.size;
     return Scaffold(
       appBar: AppBar(
         title: Text(
