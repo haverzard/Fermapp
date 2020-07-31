@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:fermapp/home.dart';
+import 'package:fermapp/main_screen.dart';
+import 'package:fermapp/add_rule.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -16,9 +17,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      initialRoute: '/',
+      initialRoute: '/home',
       routes: {
-        '/': (context) => Home(),
+        '/home': (context) => MainScreen(),
+        '/add_rule': (context) => AddRule()
       }
     );
   }
