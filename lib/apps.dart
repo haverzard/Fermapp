@@ -17,7 +17,7 @@ class _AppsState extends State<Apps> {
       var startDate = DateTime(endDate.year, endDate.month, endDate.day);
       endDate = DateTime(endDate.year, endDate.month, endDate.day+1);
       Map<String, double> usage = await AppUsage().fetchUsage(startDate, endDate);
-      List<Application> apps = await DeviceApps.getInstalledApplications(includeAppIcons: true);
+      var apps = await DeviceApps.getInstalledApplications(includeAppIcons: true);
       var temp = <Map>[];
       apps.forEach((e) {
         temp.add({
@@ -44,7 +44,7 @@ class _AppsState extends State<Apps> {
 
   @override
   Widget build(BuildContext context) {
-    var screenSize = MediaQuery.of(context).size;
+//    var screenSize = MediaQuery.of(context).size;
     return SafeArea(
         child: Column(
             children: <Widget>[
