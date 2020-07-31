@@ -26,8 +26,6 @@ class _AppsState extends State<Apps> {
           'usageTimeHours': usage[e.packageName] ~/ 3600,
           'usageTimeMinutes': usage[e.packageName] % 3600 ~/ 60,
         });
-        print(usage[e.packageName]);
-        print(usage);
       });
       setState(() => appsList = temp);
     }
