@@ -1,4 +1,4 @@
-import 'file:///D:/Project/Mobile/fermapp/lib/add_rule/add_rule_form.dart';
+import 'package:fermapp/add_rule/add_rule_form.dart';
 import 'package:fermapp/loading.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
