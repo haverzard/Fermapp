@@ -1,5 +1,5 @@
-import 'package:fermapp/home.dart';
-import 'package:fermapp/apps.dart';
+import 'file:///D:/Project/Mobile/fermapp/lib/home/home.dart';
+import 'file:///D:/Project/Mobile/fermapp/lib/home/apps.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
