@@ -155,6 +155,7 @@ class _AddRuleFormState extends State<AddRuleForm> {
                           SnackBar(content: Text('Cannot process data')));
                     } else {
                       prefs.setInt(selectedApp.packageName, hour*3600+minute*60);
+                      prefs.setBool(selectedApp.packageName+'-activated', false);
                       Navigator.pop(context);
                     }
                   }
