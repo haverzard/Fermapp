@@ -5,8 +5,8 @@ import 'package:app_usage/app_usage.dart';
 import 'package:device_apps/device_apps.dart';
 import 'package:flutter_isolate/flutter_isolate.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:fermapp/main_screen.dart';
-import 'package:fermapp/add_rule.dart';
+import 'package:fermapp/home/main_screen.dart';
+import 'package:fermapp/add_rule/add_rule.dart';
 
 void usageScheduler(String _arg) async  {
   Timer.periodic(Duration(seconds:5), (timer) async {
