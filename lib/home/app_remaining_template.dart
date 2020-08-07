@@ -1,3 +1,4 @@
+import 'package:fermapp/info/info.dart';
 import 'package:fermapp/rule/edit_rule.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -38,7 +39,7 @@ class _AppRemainingWidgetState extends State<AppRemainingWidget> {
               ),
             ),
             Container(
-              width: 160,
+              width: 150,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -53,8 +54,8 @@ class _AppRemainingWidgetState extends State<AppRemainingWidget> {
                   Text('remaining time:'),
                   Text(
                     app['overUsage'] ?
-                    'over-usage'
-                        : '${app['remainingTimeHours']}h ${app['remainingTimeMinutes']}m',
+                      'over-usage'
+                      : '${app['remainingTimeHours']}h ${app['remainingTimeMinutes']}m',
                     style: TextStyle(
                       fontSize: 15,
                       color: app['overUsage'] ? Colors.red : Colors.black,
@@ -78,6 +79,7 @@ class _AppRemainingWidgetState extends State<AppRemainingWidget> {
                         'appName': app['appName'],
                         'packageName': app['packageName'],
                         'appIcon': app['appIcon'],
+                        'timeLimit': prefs.getInt(app['packageName']),
                         'usageTime': app['usageTime'],
                         'remainingTimeHours': delta ~/ 3600,
                         'remainingTimeMinutes': delta % 3600 ~/ 60,
@@ -95,12 +97,16 @@ class _AppRemainingWidgetState extends State<AppRemainingWidget> {
               padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
               width: 70,
               child: RaisedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(context, MaterialPageRoute(
+                      builder: (context) => AppInfo(app),
+                    ));
+                  },
                   color: Color.fromRGBO(87, 160, 246, 1),
                   textColor: Colors.black,
                   child: Text('Info')
               ),
-            )
+            ),
           ],
         )
     );
