@@ -53,12 +53,8 @@ class _MainScreenState extends State<MainScreen> {
             title: Text('Home'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
+            icon: Icon(Icons.apps),
             title: Text('Apps'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            title: Text('Settings'),
           ),
         ],
         selectedItemColor: Colors.amber[800],
