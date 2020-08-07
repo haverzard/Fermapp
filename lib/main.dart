@@ -22,25 +22,28 @@ void usageScheduler(String _arg) async  {
     Map<String, double> usage = await AppUsage().fetchUsage(startDate, endDate);
     var apps = await DeviceApps.getInstalledApplications(includeAppIcons: true);
     apps.forEach((e) async {
-      var rule = prefs.getInt(e.packageName) ?? -1;
-      if (rule <= usage[e.packageName]) {
-        if (!prefs.getBool(e.packageName+'-activated')) {
-          await prefs.setBool(e.packageName+'-activated', true);
-          var androidPlatformChannelSpecifics = AndroidNotificationDetails(
-              'fermapp_app', 'fermapp_usage_warning',
-              'Fermapp Usage Warning Notification',
-              importance: Importance.Max,
-              priority: Priority.High,
-              ticker: 'ticker');
-          var platformChannelSpecifics = NotificationDetails(
-              androidPlatformChannelSpecifics, null);
-          await flutterLocalNotificationsPlugin.show(
-              0, 'Fermapp Usage Warning',
-              "${e.appName}'s usage time has reached the limit time", platformChannelSpecifics);
-        }
-      } else {
-        if (prefs.getBool(e.packageName+'-activated')) {
-          await prefs.setBool(e.packageName+'-activated', false);
+      var rule = prefs.getInt(e.packageName);
+      if (rule != null) {
+        if (rule <= usage[e.packageName]) {
+          if (!prefs.getBool(e.packageName + '-activated')) {
+            await prefs.setBool(e.packageName + '-activated', true);
+            var androidPlatformChannelSpecifics = AndroidNotificationDetails(
+                'fermapp_app', 'fermapp_usage_warning',
+                'Fermapp Usage Warning Notification',
+                importance: Importance.Max,
+                priority: Priority.High,
+                ticker: 'ticker');
+            var platformChannelSpecifics = NotificationDetails(
+                androidPlatformChannelSpecifics, null);
+            await flutterLocalNotificationsPlugin.show(
+                0, 'Fermapp Usage Warning',
+                "${e.appName}'s usage time has reached the limit time",
+                platformChannelSpecifics);
+          }
+        } else {
+          if (prefs.getBool(e.packageName + '-activated')) {
+            await prefs.setBool(e.packageName + '-activated', false);
+          }
         }
       }
     });

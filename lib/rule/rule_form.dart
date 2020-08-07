@@ -111,7 +111,7 @@ class _RuleFormState extends State<RuleForm> {
                       decoration: const InputDecoration(
                         hintText: 'Hour',
                       ),
-                      initialValue: hour.toString(),
+                      initialValue: hour != null ? hour.toString() : null,
                       validator: (value) {
                         if (value.isEmpty) {
                           return 'Please enter an hour';
@@ -134,7 +134,7 @@ class _RuleFormState extends State<RuleForm> {
                       decoration: const InputDecoration(
                         hintText: 'Minute',
                       ),
-                      initialValue: minute.toString(),
+                      initialValue: minute != null ? minute.toString() : null,
                       validator: (value) {
                         if (value.isEmpty) {
                           return 'Please enter a minute';
