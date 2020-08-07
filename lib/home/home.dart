@@ -1,6 +1,7 @@
 import 'package:fermapp/home/daily_analytics_bar.dart';
 import 'package:fermapp/home/app_remaining_template.dart';
 import 'package:fermapp/home/most_used_analytics_bar.dart';
+import 'package:fermapp/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:app_usage/app_usage.dart';
 import 'package:device_apps/device_apps.dart';
@@ -15,6 +16,7 @@ class _HomeState extends State<Home> {
   List<Map> rulesList = [];
   Map<String, double> usage;
   List<Map> apps;
+  bool finished = false;
 
   void getAppsData() async {
     try {
@@ -53,7 +55,7 @@ class _HomeState extends State<Home> {
         }
         return e1['remainingTimeMinutes'] < e2['remainingTimeMinutes'];
       });
-      setState(() { rulesList = tempRules; usage = tempUsage; apps = tempAppsListed; });
+      setState(() { rulesList = tempRules; usage = tempUsage; apps = tempAppsListed; finished = true; });
     }
     on AppUsageException catch (exception) {
       print(exception);
@@ -68,7 +70,9 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return !finished ?
+      Loading()
+      : SafeArea(
         child: Column(
             children: <Widget>[
               SizedBox(height: 50),
@@ -80,7 +84,7 @@ class _HomeState extends State<Home> {
                     DailyAnalyticsBar(usage),
                     MostUsedAnalyticsBar(apps),
                   ],
-                ),
+                )
               ),
               Container(
                 height: 350,

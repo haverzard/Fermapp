@@ -46,11 +46,11 @@ class MostUsedAnalyticsBar extends StatelessWidget {
                       child: Container(
                         width: 90,
                         decoration: BoxDecoration(
-                            color: Color.fromRGBO(255, 111, 111, 1),
+                            color: Color.fromRGBO(255, 255, 255, 1),
                             borderRadius: BorderRadius.all(Radius.circular(20)),
                             image: DecorationImage(
-                                fit: BoxFit.fill,
-                                image: MemoryImage(app['appIcon'])
+                              fit: BoxFit.fill,
+                              image: MemoryImage(app['appIcon']),
                             )
                         ),
                       )

@@ -57,7 +57,8 @@ class _MainScreenState extends State<MainScreen> {
             title: Text('Apps'),
           ),
         ],
-        selectedItemColor: Colors.amber[800],
+        selectedItemColor: Colors.white,
+        backgroundColor: Colors.deepPurple,
         onTap: (index) {
           setState(() => {
             currentIndex = index,
