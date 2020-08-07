@@ -117,7 +117,7 @@ class _RuleFormState extends State<RuleForm> {
                           return 'Please enter an hour';
                         }
                         var temp = int.parse(value);
-                        if (temp >= 0 && temp <= 60) {
+                        if (temp < 0 || temp > 60) {
                           return 'Please enter a correct hour';
                         }
                         return null;
@@ -140,7 +140,7 @@ class _RuleFormState extends State<RuleForm> {
                           return 'Please enter a minute';
                         }
                         var temp = int.parse(value);
-                        if (temp >= 0 && temp <= 60) {
+                        if (temp < 0 || temp > 60) {
                           return 'Please enter a correct minute';
                         }
                         return null;

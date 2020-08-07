@@ -1,4 +1,4 @@
-import 'package:fermapp/rule/add_rule_form.dart';
+import 'package:fermapp/rule/rule_form.dart';
 import 'package:fermapp/loading.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
