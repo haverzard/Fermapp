@@ -1,6 +1,5 @@
 import 'package:fermapp/home/analytics_bar.dart';
 import 'package:fermapp/home/app_remaining_template.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:app_usage/app_usage.dart';
 import 'package:device_apps/device_apps.dart';
@@ -22,21 +21,23 @@ class _HomeState extends State<Home> {
       Map<String, double> usage = await AppUsage().fetchUsage(startDate, endDate);
       var apps = await DeviceApps.getInstalledApplications(includeAppIcons: true);
       var prefs = await SharedPreferences.getInstance();
-      var temp = <Map>[];
+      var tempRules = <Map>[];
       apps.forEach((e) {
         if (prefs.getInt(e.packageName) != null) {
           var delta = prefs.getInt(e.packageName) - usage[e.packageName];
-          temp.add({
+          tempRules.add({
             'appName': e.appName,
+            'packageName': e.packageName,
+            'usageTime': usage[e.packageName],
             'appIcon': e is ApplicationWithIcon ? e.icon : null,
             'remainingTimeHours': delta ~/ 3600,
             'remainingTimeMinutes': delta % 3600 ~/ 60,
-            'overUsage': delta < 0
+            'overUsage': delta < 0,
+            'instance': e,
           });
-          print(temp);
         }
       });
-      setState(() => rulesList = temp);
+      setState(() { rulesList = tempRules; });
     }
     on AppUsageException catch (exception) {
       print(exception);

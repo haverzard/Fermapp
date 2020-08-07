@@ -1,6 +1,5 @@
-import 'package:fermapp/add_rule/add_rule_form.dart';
+import 'package:fermapp/rule/add_rule_form.dart';
 import 'package:fermapp/loading.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:device_apps/device_apps.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -45,10 +44,10 @@ class _AddRuleState extends State<AddRule> {
   Widget getPortrait(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Create new time-rule'),
+        title: Text('Create a new time-rule'),
         elevation: 0,
       ),
-      body: finished ? AddRuleForm(apps, prefs) : Loading(),
+      body: finished ? RuleForm(apps, prefs, false) : Loading(),
     );
   }
 }

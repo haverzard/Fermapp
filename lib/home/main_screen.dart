@@ -1,6 +1,5 @@
 import 'package:fermapp/home/home.dart';
 import 'package:fermapp/home/apps.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class MainScreen extends StatefulWidget {

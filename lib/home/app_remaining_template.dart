@@ -1,11 +1,21 @@
-import 'package:flutter/cupertino.dart';
+import 'package:fermapp/rule/edit_rule.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class AppRemainingWidget extends StatelessWidget {
+class AppRemainingWidget extends StatefulWidget {
   final Map app;
 
   AppRemainingWidget(this.app);
-  
+
+  @override
+  _AppRemainingWidgetState createState() => _AppRemainingWidgetState(app);
+}
+
+class _AppRemainingWidgetState extends State<AppRemainingWidget> {
+  Map app;
+
+  _AppRemainingWidgetState(this.app);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -57,7 +67,25 @@ class AppRemainingWidget extends StatelessWidget {
               padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
               width: 70,
               child: RaisedButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    await Navigator.push(context, MaterialPageRoute(
+                      builder: (context) => EditRule([app['instance']]),
+                    ));
+                    var prefs = await SharedPreferences.getInstance();
+                    var delta = prefs.getInt(app['packageName']) - app['usageTime'];
+                    setState(() {
+                      app = {
+                        'appName': app['appName'],
+                        'packageName': app['packageName'],
+                        'appIcon': app['appIcon'],
+                        'usageTime': app['usageTime'],
+                        'remainingTimeHours': delta ~/ 3600,
+                        'remainingTimeMinutes': delta % 3600 ~/ 60,
+                        'overUsage': delta < 0,
+                        'instance': app['instance'],
+                      };
+                    });
+                  },
                   color: Color.fromRGBO(172, 238, 106, 1),
                   textColor: Colors.black,
                   child: Text('Edit')

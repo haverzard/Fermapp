@@ -1,26 +1,34 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:device_apps/device_apps.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class AddRuleForm extends StatefulWidget {
+class RuleForm extends StatefulWidget {
   final List apps;
   final SharedPreferences prefs;
+  final bool isEdit;
 
-  AddRuleForm(this.apps, this.prefs);
+  RuleForm(this.apps, this.prefs, this.isEdit);
 
   @override
-  _AddRuleFormState createState() => _AddRuleFormState(apps, prefs);
+  _RuleFormState createState() => _RuleFormState();
 }
 
-class _AddRuleFormState extends State<AddRuleForm> {
-  final List apps;
-  final SharedPreferences prefs;
+class _RuleFormState extends State<RuleForm> {
   final _formKey = GlobalKey<FormState>();
   Application selectedApp;
   int hour, minute;
 
-  _AddRuleFormState(this.apps, this.prefs);
+  @override
+  void initState() {
+    super.initState();
+    if (widget.isEdit) {
+      setState(() {
+        hour = widget.prefs.getInt(widget.apps[0].packageName) ~/ 3600;
+        minute = widget.prefs.getInt(widget.apps[0].packageName) % 3600 ~/ 60;
+        selectedApp = widget.apps[0];
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,13 +47,7 @@ class _AddRuleFormState extends State<AddRuleForm> {
                 itemHeight: 75,
                 hint: Text('Select the app'),
                 value: selectedApp,
-                items: apps.map((value) {
-//                {
-//                  'appName': e.appName,
-//                  'appIcon': e is ApplicationWithIcon ? e.icon : null,
-//                  'usageTimeHours': usage[e.packageName] ~/ 3600,
-//                  'usageTimeMinutes': usage[e.packageName] % 3600 ~/ 60,
-//                };
+                items: widget.apps.map((value) {
                   return DropdownMenuItem(
                     child: Container(
                         height: 75,
@@ -109,9 +111,14 @@ class _AddRuleFormState extends State<AddRuleForm> {
                       decoration: const InputDecoration(
                         hintText: 'Hour',
                       ),
+                      initialValue: hour.toString(),
                       validator: (value) {
                         if (value.isEmpty) {
                           return 'Please enter an hour';
+                        }
+                        var temp = int.parse(value);
+                        if (temp >= 0 && temp <= 60) {
+                          return 'Please enter a correct hour';
                         }
                         return null;
                       },
@@ -127,9 +134,14 @@ class _AddRuleFormState extends State<AddRuleForm> {
                       decoration: const InputDecoration(
                         hintText: 'Minute',
                       ),
+                      initialValue: minute.toString(),
                       validator: (value) {
                         if (value.isEmpty) {
                           return 'Please enter a minute';
+                        }
+                        var temp = int.parse(value);
+                        if (temp >= 0 && temp <= 60) {
+                          return 'Please enter a correct minute';
                         }
                         return null;
                       },
@@ -146,7 +158,7 @@ class _AddRuleFormState extends State<AddRuleForm> {
               width: innerWidth,
               height: 50,
               child: RaisedButton(
-                onPressed: () {
+                onPressed: () async {
                   if (_formKey.currentState.validate()) {
                     if (minute == 0 && hour == 0) {
                       Scaffold
@@ -154,8 +166,8 @@ class _AddRuleFormState extends State<AddRuleForm> {
                           .showSnackBar(
                           SnackBar(content: Text('Cannot process data')));
                     } else {
-                      prefs.setInt(selectedApp.packageName, hour*3600+minute*60);
-                      prefs.setBool(selectedApp.packageName+'-activated', false);
+                      await widget.prefs.setInt(selectedApp.packageName, hour*3600+minute*60);
+                      await widget.prefs.setBool(selectedApp.packageName+'-activated', false);
                       Navigator.pop(context);
                     }
                   }
