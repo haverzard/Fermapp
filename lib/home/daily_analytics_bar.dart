@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
 
-class AnalyticsBar extends StatelessWidget {
+class DailyAnalyticsBar extends StatelessWidget {
+  final Map usage;
+
+  DailyAnalyticsBar(this.usage);
+
   @override
   Widget build(BuildContext context) {
+    var totalUsage = 0;
+    usage.forEach((_, v) {
+      totalUsage += v.round();
+    });
     var screenSize = MediaQuery.of(context).size;
     return Padding(
       padding: EdgeInsets.fromLTRB(screenSize.width * 0.03, 0, screenSize.width * 0.03, 0),
@@ -12,7 +20,7 @@ class AnalyticsBar extends StatelessWidget {
           Container(
             padding: EdgeInsets.fromLTRB(10, 0, 0, 10),
             child: Text(
-              'Incoming Deadline',
+              'Today Total Usage',
               style: TextStyle(
                   fontSize: 24.0
               ),
@@ -43,12 +51,12 @@ class AnalyticsBar extends StatelessWidget {
                       )
                   ),
                   Padding(
-                    padding: EdgeInsets.fromLTRB(0, 20, 0, 20),
+                    padding: EdgeInsets.fromLTRB(0, 30, 0, 20),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
-                          'APP NAME',
+                          'Total Usage',
                           style: TextStyle(
                             fontSize: 19,
                             fontWeight: FontWeight.bold,
@@ -61,25 +69,12 @@ class AnalyticsBar extends StatelessWidget {
                           ),
                         ),
                         Text(
-                          '2:00:30',
+                          '${totalUsage ~/ 3600}h ${totalUsage % 3600 ~/ 60}m',
                           style: TextStyle(
                             fontSize: 17,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        Text(
-                          'remaining time',
-                          style: TextStyle(
-                            fontSize: 15,
-                          ),
-                        ),
-                        Text(
-                          '2:00:30',
-                          style: TextStyle(
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        )
                       ],
                     ),
                   )
