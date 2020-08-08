@@ -32,7 +32,7 @@ class DailyAnalyticsBar extends StatelessWidget {
                   color: Color.fromRGBO(255, 111, 111, 1),
                   borderRadius: BorderRadius.all(Radius.circular(20))
               ),
-              width: MediaQuery.of(context).size.width * 0.9,
+              width: screenSize.width * 0.9,
               height: 140,
               child: Row(
                 children: <Widget>[
@@ -50,13 +50,15 @@ class DailyAnalyticsBar extends StatelessWidget {
                         ),
                       )
                   ),
-                  Padding(
+                  Container(
                     padding: EdgeInsets.fromLTRB(0, 30, 0, 20),
+                    width: screenSize.width * 0.5,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
                           'Total Usage',
+                          overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             fontSize: 19,
                             fontWeight: FontWeight.bold,

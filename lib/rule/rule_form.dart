@@ -67,10 +67,14 @@ class _RuleFormState extends State<RuleForm> {
                                   )
                               ),
                             ),
-                            Text(
-                              '${value.appName}',
-                              style: TextStyle(
-                                fontSize: 20,
+                            Container(
+                              width: screenSize.width * 0.6,
+                              child: Text(
+                                '${value.appName}',
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  fontSize: 20,
+                                ),
                               ),
                             ),
                           ],

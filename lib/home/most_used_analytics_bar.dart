@@ -55,13 +55,15 @@ class MostUsedAnalyticsBar extends StatelessWidget {
                         ),
                       )
                   ),
-                  Padding(
+                  Container(
                     padding: EdgeInsets.fromLTRB(0, 30, 0, 20),
+                    width: screenSize.width * 0.5,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
                         Text(
                           '${app['appName']}',
+                          overflow: TextOverflow.ellipsis,
                           style: TextStyle(
                             fontSize: 19,
                             fontWeight: FontWeight.bold,

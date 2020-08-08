@@ -7,6 +7,7 @@ class AppUsageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var screenSize = MediaQuery.of(context).size;
     return Container(
         padding: EdgeInsets.fromLTRB(0, 5, 0, 5),
         height: 75,
@@ -30,10 +31,14 @@ class AppUsageWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Text(
-                  '${app['appName']}',
-                  style: TextStyle(
-                    fontSize: 20,
+                Container(
+                  width: screenSize.width * 0.7,
+                  child: Text(
+                    '${app['appName']}',
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      fontSize: 20,
+                    ),
                   ),
                 ),
                 Text('usage time: ${app['usageTimeHours']}h ${app['usageTimeMinutes']}m')

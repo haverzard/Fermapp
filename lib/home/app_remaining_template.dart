@@ -46,6 +46,7 @@ class _AppRemainingWidgetState extends State<AppRemainingWidget> {
                 children: <Widget>[
                   Text(
                     '${app['appName']}',
+                    overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,

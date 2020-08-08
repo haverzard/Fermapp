@@ -43,6 +43,7 @@ class AppInfo extends StatelessWidget {
                       SizedBox(height: 20),
                       Text(
                         '${app['appName']}',
+                        overflow: TextOverflow.ellipsis,
                         style: TextStyle(
                           fontSize: 25,
                         ),
