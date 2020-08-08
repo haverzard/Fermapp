@@ -14,6 +14,14 @@ void usageScheduler(String _arg) async  {
   var initializationSettingsAndroid = AndroidInitializationSettings('app_icon');
   var initializationSettings = InitializationSettings(initializationSettingsAndroid, null);
   await flutterLocalNotificationsPlugin.initialize(initializationSettings);
+  var androidPlatformChannelSpecifics = AndroidNotificationDetails(
+      'fermapp_app', 'fermapp_usage_warning',
+      'Fermapp Usage Warning Notification',
+      importance: Importance.Max,
+      priority: Priority.High,
+      ticker: 'ticker');
+  var platformChannelSpecifics = NotificationDetails(
+      androidPlatformChannelSpecifics, null);
   Timer.periodic(Duration(seconds:5), (timer) async {
     var endDate = DateTime.now();
     var startDate = DateTime(endDate.year, endDate.month, endDate.day);
@@ -27,14 +35,6 @@ void usageScheduler(String _arg) async  {
         if (rule <= usage[e.packageName]) {
           if (!prefs.getBool(e.packageName + '-activated')) {
             await prefs.setBool(e.packageName + '-activated', true);
-            var androidPlatformChannelSpecifics = AndroidNotificationDetails(
-                'fermapp_app', 'fermapp_usage_warning',
-                'Fermapp Usage Warning Notification',
-                importance: Importance.Max,
-                priority: Priority.High,
-                ticker: 'ticker');
-            var platformChannelSpecifics = NotificationDetails(
-                androidPlatformChannelSpecifics, null);
             await flutterLocalNotificationsPlugin.show(
                 0, 'Fermapp Usage Warning',
                 "${e.appName}'s usage time has reached the limit time",
@@ -44,6 +44,25 @@ void usageScheduler(String _arg) async  {
           if (prefs.getBool(e.packageName + '-activated')) {
             await prefs.setBool(e.packageName + '-activated', false);
           }
+        }
+      }
+      var indicator = prefs.getBool('global-fermapp') ?? false;
+      var totalUsage = 0;
+      usage.forEach((_, v) {
+        totalUsage += v.round();
+      });
+
+      if (totalUsage >= 36000) {
+        if (!indicator) {
+          await prefs.setBool('global-fermapp', true);
+          await flutterLocalNotificationsPlugin.show(
+              0, 'Fermapp Usage Warning',
+              'Today total usage time has reached 10 hours',
+              platformChannelSpecifics);
+        }
+      } else {
+        if (indicator) {
+          await prefs.setBool('global-fermapp', false);
         }
       }
     });
