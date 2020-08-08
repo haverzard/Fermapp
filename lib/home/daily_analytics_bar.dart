@@ -45,7 +45,7 @@ class DailyAnalyticsBar extends StatelessWidget {
                             borderRadius: BorderRadius.all(Radius.circular(20)),
                             image: DecorationImage(
                                 fit: BoxFit.fill,
-                                image: AssetImage('assets/Lulu.PNG')
+                                image: AssetImage('assets/app_icon.png')
                             )
                         ),
                       )
