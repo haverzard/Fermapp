@@ -22,6 +22,7 @@ void usageScheduler(String _arg) async  {
       ticker: 'ticker');
   var platformChannelSpecifics = NotificationDetails(
       androidPlatformChannelSpecifics, null);
+
   Timer.periodic(Duration(seconds:5), (timer) async {
     var endDate = DateTime.now();
     var startDate = DateTime(endDate.year, endDate.month, endDate.day);

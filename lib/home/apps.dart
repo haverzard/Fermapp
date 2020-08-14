@@ -18,16 +18,14 @@ class _AppsState extends State<Apps> {
       endDate = DateTime(endDate.year, endDate.month, endDate.day+1);
       Map<String, double> usage = await AppUsage().fetchUsage(startDate, endDate);
       var apps = await DeviceApps.getInstalledApplications(includeAppIcons: true);
-      var temp = <Map>[];
-      apps.forEach((e) {
-        temp.add({
+      apps.forEach((e) async {
+        setState(() => appsList.add({
           'appName': e.appName,
           'appIcon': e is ApplicationWithIcon ? e.icon : null,
-          'usageTimeHours': usage[e.packageName] ~/ 3600,
-          'usageTimeMinutes': usage[e.packageName] % 3600 ~/ 60,
-        });
+          'usageTimeHours': (usage[e.packageName] ?? 0) ~/ 3600,
+          'usageTimeMinutes': (usage[e.packageName] ?? 0) % 3600 ~/ 60,
+        }));
       });
-      setState(() => appsList = temp);
     }
     on AppUsageException catch (exception) {
       print(exception);
@@ -46,7 +44,7 @@ class _AppsState extends State<Apps> {
         child: Column(
             children: <Widget>[
               Container(
-                height: 350,
+                height: MediaQuery.of(context).size.height,
                 child: ListView.builder(
                     scrollDirection: Axis.vertical,
                     itemCount: appsList.length,
