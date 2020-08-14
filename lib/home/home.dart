@@ -35,7 +35,7 @@ class _HomeState extends State<Home> {
             'appName': e.appName,
             'packageName': e.packageName,
             'timeLimit': prefs.getInt(e.packageName),
-            'usageTime': tempUsage[e.packageName],
+            'usageTime': tempUsage[e.packageName] ?? 0,
             'appIcon': e is ApplicationWithIcon ? e.icon : null,
             'remainingTimeHours': delta ~/ 3600,
             'remainingTimeMinutes': delta % 3600 ~/ 60,
@@ -45,15 +45,9 @@ class _HomeState extends State<Home> {
         }
         tempAppsListed.add({
           'appName': e.appName,
-          'usageTime': tempUsage[e.packageName],
+          'usageTime': tempUsage[e.packageName] ?? 0,
           'appIcon': e is ApplicationWithIcon ? e.icon : null,
         });
-      });
-      rulesList.sort((e1, e2) {
-        if (e1['remainingTimeHours'] != e2['remainingTimeHours']) {
-          return e1['remainingTimeHours'] < e2['remainingTimeHours'];
-        }
-        return e1['remainingTimeMinutes'] < e2['remainingTimeMinutes'];
       });
       setState(() { rulesList = tempRules; usage = tempUsage; apps = tempAppsListed; finished = true; });
     }
@@ -99,7 +93,6 @@ class _HomeState extends State<Home> {
                           var prefs = await SharedPreferences.getInstance();
                           await prefs.remove(rulesList[index]['packageName']);
                           await prefs.remove(rulesList[index]['packageName']+'-activated');
-                          setState(() => rulesList.removeAt(index));
                         },
                       );
                     }
