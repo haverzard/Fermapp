@@ -28,7 +28,7 @@ class _HomeState extends State<Home> {
       var prefs = await SharedPreferences.getInstance();
       var tempRules = <Map>[];
       var tempAppsListed = <Map>[];
-      tempApps.forEach((e) async {
+      tempApps.forEach((e) {
         if (prefs.getInt(e.packageName) != null) {
           var delta = prefs.getInt(e.packageName) - tempUsage[e.packageName];
           tempRules.add({
