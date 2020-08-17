@@ -1,16 +1,15 @@
 # fermapp
 
-Time management application
+![Flutter](https://github.com/haverzard/Fermapp/workflows/Flutter/badge.svg)
+![View](app.gif)
 
-## Getting Started
+Time management application using Flutter.
 
-This project is a starting point for a Flutter application.
+## How it works
+A scheduler (run every 5 seconds) will check if an application's remaining time (timeLimit - usageTime) is 0 or lower. The scheduler will stop if you close the application, so it's troublesome because you need to open the app first everytime.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Features
+- Set time rule
+- Notify when remaining time is 0
+- Notify when overall usage time is larger than 10 hours
+- List all apps' usage time
