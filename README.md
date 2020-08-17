@@ -1,6 +1,7 @@
 # fermapp
 
 ![Flutter](https://github.com/haverzard/Fermapp/workflows/Flutter/badge.svg)
+
 ![View](app.gif)
 
 Time management application using Flutter.
